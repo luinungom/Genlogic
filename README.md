@@ -6,7 +6,7 @@ Genlogic is able to:
 - Analize linear or circular (plasmids, vectors) DNA sequences.
 - Use endonucleases that cleave within a recognition site.
 - Use endonucleases that cleave short specific distances from a recognition site.
-- Use endonucleases that cleave cleave at sites remote from a recognition site.
-- Use endonucleases with degenerated site (one or more base pairs that are not specifically defined).
+- Use endonucleases that cleave at sites remote from a recognition site.
+- Use endonucleases with degenerated recognition site (one or more base pairs that are not specifically defined).
 - Allows the user to insert or delete endonucleases manually.
 - Results can be exported as txt or CSV files.
