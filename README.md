@@ -7,4 +7,5 @@ Genlogic is able to:
 - Use endonucleases that cleave within a recognition site.
 - Use endonucleases that cleave short specific distances from a recognition site.
 - Use endonucleases that cleave cleave at sites remote from a recognition site.
-- Use endonuclease with degenerated site (one or more base pairs that are not specifically defined).
+- Use endonucleases with degenerated site (one or more base pairs that are not specifically defined).
+- Allows the user to insert or delete endonucleases manually.
