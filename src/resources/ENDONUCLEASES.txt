@@ -1,0 +1,24 @@
+EcoRI::Escherichia coli::GAATTC::1::true::false::G^AATTC::CTTAA^G
+BamHI::Bacillus amyloliquefaciens::GGATCC::1::true::false
+BglII::Baccilus globiggi::AGATCT::1::true::false
+FokI::Flavobacterium okeanokoites::GGATG::
+HindIII::Haemophilus influenzae::AAGCTT::1::true::false
+TaqI::Thermus aquaticus::TCGA::1::true::false
+NotI::Nocardia otitidis::GCGGCCGC::2::true::false
+Sau3A::Staphylococcus aureus::GATC::0::true::false
+PovII*::Proteus vulgaris::CAGCTG::3::true::false
+SmaI*::Serratia marcescens::CCCGGG::3::true::false
+HaeIII*::Haemophilus egytius::GGCC::2::true::false
+Alu*::Arthrobacter luteus::AGCT::2::true::false
+EcoRV*::Escherichia coli::GATATC::3::true::false
+KpnI::Klebsiella pneumonia::GGTACC::5::true::false
+PstI::Providencia stuartii::GTGCAG::5::true::false
+SacI::Streptomyces achromogenes::GAGCTC::5::true::false
+SalI::Streptomyces albue::GTCGAC::1::true::false
+SphI::Streptomyces phaeochromogenes::GCATGC::1::true::false
+XbaI::Xanthomonas badrii::TCTAGA::1::true::false
+AccI::Acinetobacter calcoaceticus::GTMKAC::GT^MKAC::CAKM^TG::true::true
+AciI::Unknown::CCGC::1::false::true::C^CGC::GG^G
+MnII::Unknown::CCTC::11::false::false::CCTCNNNNNNN^::GGAGNNNNNN^
+MnII::Unknown::CCTC::CCTCNNNNNNN^::GGAGNNNNNN^::false::false
+test::test::ACYT::AC^GT::TG^CA::true::false

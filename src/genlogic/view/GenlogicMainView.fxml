@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="ap" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genlogic.view.GenlogicMainViewController">
+    <children>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="20.0" layoutY="36.0" prefHeight="600.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="DNASequenceTable" layoutY="25.0" prefHeight="573.0" prefWidth="232.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                    <columns>
+                      <TableColumn fx:id="informationColumn" prefWidth="231.0" text="DNA Sequence ID" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="5.0" layoutY="33.0" text="DNA Sequence Details" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="33.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <GridPane layoutX="34.0" layoutY="50.0" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="617.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="50.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="206.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="341.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Sequence length (bp):" GridPane.rowIndex="1" />
+                        <Label fx:id="sequenceID" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="200.0" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="sequenceLength" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="200.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Sequence ID:" />
+                     </children>
+                  </GridPane>
+                  <TableView fx:id="endonucleaseTable" layoutX="14.0" layoutY="306.0" prefHeight="242.0" prefWidth="617.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="306.0">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" maxWidth="150.0" minWidth="75.0" prefWidth="89.760009765625" text="Name" />
+                      <TableColumn fx:id="originColumn" maxWidth="200.0" minWidth="70.0" prefWidth="175.0" text="Origin" />
+                        <TableColumn fx:id="targetColumn" prefWidth="98.0" text="Target" />
+                        <TableColumn fx:id="lengthColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Length" />
+                        <TableColumn fx:id="cleavage_siteColumn" prefWidth="134.0" sortable="false" text="Sequence" />
+                        <TableColumn fx:id="overhangColumn" prefWidth="134.0" sortable="false" text="Overhang" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="278.0" prefHeight="18.0" prefWidth="617.0" text="Restriction endonucleases available for the analysis" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Button fx:id="analize" alignment="BOTTOM_CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="250.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleAnalyzeButton" prefHeight="25.0" prefWidth="75.0" text="Analyze!" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="5.0" />
+                  <BarChart fx:id="PercentagesChart" animated="false" layoutX="14.0" layoutY="99.0" prefHeight="187.0" prefWidth="617.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="x" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="y" label="\%" side="LEFT" upperBound="90.0" />
+                    </yAxis>
+                  </BarChart>
+                  <RadioButton fx:id="circular" layoutX="469.0" layoutY="571.0" mnemonicParsing="false" text="Circular" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="95.0">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="conformation" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="lineal" layoutX="375.0" layoutY="571.0" mnemonicParsing="false" selected="true" text="Lineal" toggleGroup="$conformation" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" />
+                  <Label layoutX="377.0" layoutY="548.0" text="DNA Sequence Conformation" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="95.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="292.0" prefHeight="15.0" prefWidth="617.0" text="(CTRL + click for multiselection)" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <MenuBar layoutY="-4.0" prefHeight="31.0" prefWidth="790.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu fx:id="fileBtn" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="fileChooserBtn" mnemonicParsing="false" onAction="#handleFileChooser" text="Select FASTA file" />
+                  <MenuItem fx:id="addRestrictionEnzimesButton" mnemonicParsing="false" onAction="#handleAddRestictionEnzime" text="Add restriction endonuclease" />
+                  <MenuItem fx:id="deleteRestrictionEnzymesButton" mnemonicParsing="false" onAction="#handleDeleteEndonucleases" text="Delete restriction endonuclease" />
+                  <MenuItem fx:id="closeApplicationBtn" mnemonicParsing="false" onAction="#handleCloseApplication" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="aboutGenlogicButton" mnemonicParsing="false" onAction="#handleAboutGenlogic" text="About Genlogic" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+    </children>
+</AnchorPane>

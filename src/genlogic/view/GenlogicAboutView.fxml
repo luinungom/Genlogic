@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="370.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genlogic.view.GenlogicAboutViewController">
+   <children>
+      <ImageView fitHeight="119.0" fitWidth="580.0" layoutX="14.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resources/images/FullLogo.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="10.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. &#10;&#10;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&#10;&#10;                                                                                                                                                                                                                                                                                                  Copyright (C) 2021 Luis Núñez Gómez" textAlignment="JUSTIFY" wrappingWidth="580.0" />
+      <Hyperlink fx:id="linkedIn" layoutX="479.0" layoutY="340.0" onAction="#handleLinkedIn" text="LinkedIn" />
+      <Label layoutX="397.0" layoutY="343.0" text="Contact me on " />
+      <Label layoutX="532.0" layoutY="343.0" text="or" />
+      <Hyperlink fx:id="gitHub" layoutX="544.0" layoutY="340.0" onAction="#handleGitHub" text="GitHub" />
+   </children>
+</AnchorPane>

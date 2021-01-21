@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/app/Genlogic.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/charsets.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/access-bridge-64.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/cldrdata.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/dnsns.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/jaccess.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/jfxrt.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/localedata.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/nashorn.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/sunec.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/sunjce_provider.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/sunmscapi.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/sunpkcs11.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/ext/zipfs.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/javaws.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/jce.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/jfr.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/jfxswt.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/jsse.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/management-agent.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/plugin.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/resources.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/rt.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/security/policy/limited/local_policy.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/security/policy/limited/US_export_policy.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/security/policy/unlimited/local_policy.jar"/>
+	<classpathentry kind="lib" path="dist/bundles/Genlogic/runtime/lib/security/policy/unlimited/US_export_policy.jar"/>
+	<classpathentry kind="lib" path="dist/Genlogic.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
