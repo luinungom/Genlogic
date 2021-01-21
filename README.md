@@ -9,3 +9,4 @@ Genlogic is able to:
 - Use endonucleases that cleave cleave at sites remote from a recognition site.
 - Use endonucleases with degenerated site (one or more base pairs that are not specifically defined).
 - Allows the user to insert or delete endonucleases manually.
+- Results can be exported as txt or CSV files.
