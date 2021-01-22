@@ -20,7 +20,6 @@ package genlogic.view;
 import genlogic.RestrictionSiteSerializator;
 import genlogic.model.DNASequence;
 import genlogic.model.Endonuclease;
-import genlogic.model.RegexEndonuclease;
 import genlogic.model.RestrictionSite;
 import java.io.File;
 import java.util.HashMap;
@@ -145,7 +144,7 @@ public class GenlogicResultsViewController {
     }
 
     /**
-     * Analyses the provided sequence and returns a list of cleavage sites. It
+     * Analyzes the provided sequence and returns a list of cleavage sites. It
      * repeates an analysis for each selected endonuclease, first checks if it needs
      * a regex analysis, then if the sequence conformation is linear or circular
      * and finally it checks if the endonuclease is palindromic or not.

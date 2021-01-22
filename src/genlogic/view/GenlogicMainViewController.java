@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -285,8 +286,6 @@ public class GenlogicMainViewController implements Initializable {
         PercentagesChart.getData().clear();
         showDNASequenceDetails(newValue);
         endonucleaseTable.getItems().clear();
-            //preAnalysis disabled//
-            //preAnalysis(newValue, serializedEndonucleases);
         showEndonucleases(serializedEndonucleases);
         selectedDNASequence = newValue;
         });
@@ -306,7 +305,6 @@ public class GenlogicMainViewController implements Initializable {
         if (newValue != null) {
             sequenceID.setText(newValue.getInformation());
             sequenceLength.setText(String.valueOf(newValue.getIntLength()));
-            //DNASequence.setText(newValue.getSequence());
             set1.getData().add(new XYChart.Data("Adenine", Float.valueOf(newValue.getPercentage().get("Adenine"))));
             set1.getData().add(new XYChart.Data("Cytosine", Float.valueOf(newValue.getPercentage().get("Cytosine"))));
             set1.getData().add(new XYChart.Data("Guanine", Float.valueOf(newValue.getPercentage().get("Guanine"))));
@@ -406,6 +404,7 @@ public class GenlogicMainViewController implements Initializable {
                 // Show information in the results view
                 resultsViewController.showResults(selectedDNASequence,selectedEndonucleases, isCircular);
                 if(!resultsViewController.getMatchingRestrictionSites().isEmpty()){
+                    
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Analysis results for sequence - "+selectedDNASequence.getInformation());

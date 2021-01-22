@@ -160,7 +160,7 @@ public class DNASequence implements Serializable {
     }
 
     /**
-     * Analyses the DNA sequence nucleotides percentages.
+     * Analyzes the DNA sequence nucleotides percentages.
      * 
      * @param sequence String DNA sequence
      * @return Map with sequence nucleotides percentages
