@@ -1,5 +1,4 @@
-<img alt="Java" align="left"  src="https://forthebadge.com/images/badges/made-with-java.svg"/> 
-<img alt="Java" align="left"  src="https://forthebadge.com/images/badges/built-with-science.svg"/> 
+<img alt="Java" align="left"  src="https://forthebadge.com/images/badges/made-with-java.svg"/> <br/><br/>
 
 <br/><br/>
 
