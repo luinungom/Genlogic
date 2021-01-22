@@ -8,5 +8,6 @@ Genlogic is able to:
 - Use endonucleases that cleave short specific distances from a recognition site.
 - Use endonucleases that cleave at sites remote from a recognition site.
 - Use endonucleases with degenerated recognition site (one or more base pairs that are not specifically defined).
+- Detects targets in both strands, 5'->3' and 3'->5'.
 - Allows the user to insert or delete endonucleases manually.
 - Results can be exported as txt or CSV files.
