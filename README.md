@@ -1,7 +1,5 @@
 <img alt="Java" align="left"  src="https://forthebadge.com/images/badges/made-with-java.svg"/> <br/><br/>
-
 <br/><br/>
-
 ![alt text](https://raw.githubusercontent.com/luinungom/Genlogic/master/src/resources/images/FullLogo.png?raw=true)
 
 ![alt text](https://raw.githubusercontent.com/luinungom/Genlogic/master/Main%20window.JPG?raw=true)
