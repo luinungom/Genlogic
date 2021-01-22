@@ -1,3 +1,9 @@
+<img alt="Java" align="left"  src="https://forthebadge.com/images/badges/made-with-java.svg"/>
+<img alt="Java" align="left"  src="https://forthebadge.com/images/badges/built-with-science.svg"/> 
+<img alt="Java" align="left"  src="https://forthebadge.com/images/badges/powered-by-black-magic.svg"/> 
+
+<br/><br/>
+
 ![alt text](https://raw.githubusercontent.com/luinungom/Genlogic/master/src/resources/images/FullLogo.png?raw=true)
 
 ![alt text](https://raw.githubusercontent.com/luinungom/Genlogic/master/Main%20window.JPG?raw=true)
