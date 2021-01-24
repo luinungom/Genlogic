@@ -7,7 +7,7 @@
 
 Genlogic is able to:
 - Read FASTA and multi-FASTA DNA sequence files.
-- Analize linear or circular (plasmids, vectors) DNA sequences.
+- Analyze linear or circular (plasmids, vectors) DNA sequences.
 - Use endonucleases that cleave within a recognition site.
 - Use endonucleases that cleave short specific distances from a recognition site.
 - Use endonucleases that cleave at sites remote from a recognition site.
@@ -15,4 +15,3 @@ Genlogic is able to:
 - Detects targets in both strands, 5'->3' and 3'->5'.
 - Allows the user to insert or delete endonucleases manually.
 - Results can be exported as txt or CSV files.
-
