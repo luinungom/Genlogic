@@ -161,107 +161,169 @@ public class GenlogicResultsViewController {
         //GenlogicMainViewController genlogicMainViewController = getMainController();
         for (Endonuclease e : endonucleasesList) {
             if (!e.getIsRegex()) { // Checks if the endonuclease needs a REGEX analysis
-                System.out.println("NO REGEX");
                 // Creates a map of digested DNA sequence build of fragments and positions
                 Map<Integer, String> sequenceFragments = sequenceFragmentsConstructor(sequence, e);
                 for (int i = 0; i < sequenceFragments.size(); i++) {
-                    String fragment = sequenceFragments.get(i); // Extracts the DNA fragment of the current position
-                    if (fragment.equalsIgnoreCase(e.getEndonucleaseSimpleSenseTarget())) {
-                        // If the sequence is not circular and the cutting bp is not out of the sequence's limit
-                        if (!isCircular && ((i + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength())) {
-                            RestrictionSite targetMatch = new RestrictionSite(e, i, "sense", sequence);
-                            matchingRestrictionSites.add(targetMatch);
-                            // If the sequence is circular we don't need to check if the cutting bp is out of the sequence's limits
-                        } else if (isCircular) {
-                            // If i+j is smaller than sequence's length, the cutting bp is in the end of the sequence
-                            if ((i + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
-                                RestrictionSite match = new RestrictionSite(e, i, "sense", sequence);
-                                matchingRestrictionSites.add(match);
-                                System.out.println(i + e.getEndonucleasesSenseStrandCuttingBp());
-                                // If i+j is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
-                            } else {
-                                RestrictionSite match = new RestrictionSite(e, (i - (int) sequence.getLength()), "sense", sequence);
-                                matchingRestrictionSites.add(match);
-                            }
-                        }
-                    }
-                    // If the analysis reach the last fragment and the sequence is circular a last special analysis need to be done
-                    if (isCircular && i == sequenceFragments.size() - 1) {
-                        circularAnalysis(sequenceFragments, e, i, sequence);
-                    }
+                    /* Performs an analisys of the sequence when the endonuclease is no regex, and no palindromic. 
+                    It also checks if the analysis for circular sequences need to be done.*/
+                    noRegexPalindromicAnalysis(sequenceFragments, i, e, isCircular, sequence);
                 }
                 if (!e.getIsPalindromic()) { // if it is a non palindromic endonuclease it performs an antisense analysis
-                    System.out.println("NO PALINDROMIC");
                     Map<Integer, String> antiSequenceFragments = antiSequenceFragmentsConstructor(sequence, e);
                     for (int j = 0; j < antiSequenceFragments.size(); j++) {
-                        String antiFragment = antiSequenceFragments.get(j);
-                        if (antiFragment.equalsIgnoreCase(e.getEndonucleaseSimpleSenseTarget())) {
-                            // If the sequence is not circular and the cutting bp is not out of the sequence's limit
-                            if (!isCircular && ((sequence.getLength() - (j + e.getEndonucleasesAntiSenseStrandCuttingBp()) > 0))) {
-                                RestrictionSite targetMatch = new RestrictionSite(e, j, "antisense", sequence);
-                                matchingRestrictionSites.add(targetMatch);
-                            } else if (isCircular) {
-                                if ((j + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
-                                    RestrictionSite match = new RestrictionSite(e, j, "antisense", sequence);
-                                    matchingRestrictionSites.add(match);
-                                    System.out.println(j + e.getEndonucleasesSenseStrandCuttingBp());
-                                } else { // If i+j is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
-                                    RestrictionSite match = new RestrictionSite(e, j - (int) (sequence.getLength()), "antisense", sequence);
-                                    matchingRestrictionSites.add(match);
-                                }
-                            }
-                        }
+                        // Performs an analysis of the antisequence when the endonuclease is no regex,
+                        noRegexNoPalindromicAnalysis(antiSequenceFragments, j, e, isCircular, sequence);
                     }
                 }
             } else {
                 String regex = e.getEndonucleaseSimpleSenseTarget();
                 Map<Integer, String> sequenceFragments = sequenceFragmentsConstructor(sequence, e);
                 for (int k = 0; k < sequenceFragments.size(); k++) {
-                    String fragment = sequenceFragments.get(k);
-                    if (fragment.matches(regex)) {
-                        if (!isCircular && ((k + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength())) {
-                            RestrictionSite targetMatch = new RestrictionSite(e, k, "sense", sequence);
-                            matchingRestrictionSites.add(targetMatch);
-                        } else if (isCircular) {
-                            if ((k + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
-                                RestrictionSite match = new RestrictionSite(e, k, "sense", sequence);
-                                matchingRestrictionSites.add(match);
-                            } else { // If k is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
-                                RestrictionSite match = new RestrictionSite(e, k - (int) (sequence.getLength()), "sense", sequence);
-                                matchingRestrictionSites.add(match);
-                            }
-                        }
-                    }
-                    if (isCircular && k == sequenceFragments.size() - 1) {
-                        circularAnalysis(sequenceFragments, e, k, sequence, regex);
-                    }
+                    /* Performs an analisys of the sequence when the endonuclease is regex, and palindromic. 
+                    It also checks if the analysis for circular sequences need to be done.*/
+                    regexPalindromicAnalysis(sequenceFragments, k, regex, isCircular, e, sequence);
                 }
                 if (!e.getIsPalindromic()) {
-                    System.out.println("REGEX NO PALINDROMIC");
-                    //System.out.println(regexEnsambler(e.getEndonucleaseSimpleSenseTarget()));
                     String antiRegex = e.getEndonucleaseSimpleSenseTarget();
                     Map<Integer, String> antiSequenceFragments = antiSequenceFragmentsConstructor(sequence, e);
                     for (int m = 0; m < antiSequenceFragments.size(); m++) {
-                        String antiFragment = antiSequenceFragments.get(m);
-                        if (antiFragment.matches(antiRegex)) {
-                            if (!isCircular && ((sequence.getLength() - (m + e.getEndonucleasesAntiSenseStrandCuttingBp()) > 0))) {
-                                RestrictionSite targetMatch = new RestrictionSite(e, m, "antisense", sequence);
-                                matchingRestrictionSites.add(targetMatch);
-                            } else if (isCircular) {
-                                if ((m + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
-                                    RestrictionSite match = new RestrictionSite(e, m, "antisense", sequence);
-                                    matchingRestrictionSites.add(match);
-                                } else { // If m is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
-                                    RestrictionSite match = new RestrictionSite(e, m - (int) (sequence.getLength()), "antisense", sequence);
-                                    matchingRestrictionSites.add(match);
-                                }
-                            }
-                        }
+                        // Performs an analysis of the antisequence when the endonuclease is regex, and it is palindromic.
+                        regexNoPalindromicAnalysis(antiSequenceFragments, m, antiRegex, isCircular, sequence, e);
                     }
                 }
             }
         }
         return matchingRestrictionSites;
+    }
+
+    /**
+     * Performs an analysis of the antisequence when the endonuclease is regex,
+     * and it is palindromic.
+     * 
+     * @param antiSequenceFragments Digested DNA sequence in fragments
+     * @param m Indicates the current fagment position in the sequence
+     * @param antiRegex Target site sequence
+     * @param isCircular Indicates if the DNA sequence is circular
+     * @param sequence DNA sequence
+     * @param e Endonuclease
+     */
+    private void regexNoPalindromicAnalysis(Map<Integer, String> antiSequenceFragments, int m, String antiRegex, boolean isCircular, DNASequence sequence, Endonuclease e) {
+        String antiFragment = antiSequenceFragments.get(m);
+        if (antiFragment.matches(antiRegex)) {
+            if (!isCircular && ((sequence.getLength() - (m + e.getEndonucleasesAntiSenseStrandCuttingBp()) > 0))) {
+                RestrictionSite targetMatch = new RestrictionSite(e, m, "antisense", sequence);
+                matchingRestrictionSites.add(targetMatch);
+            } else if (isCircular) {
+                if ((m + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
+                    RestrictionSite match = new RestrictionSite(e, m, "antisense", sequence);
+                    matchingRestrictionSites.add(match);
+                } else { // If m is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
+                    RestrictionSite match = new RestrictionSite(e, m - (int) (sequence.getLength()), "antisense", sequence);
+                    matchingRestrictionSites.add(match);
+                }
+            }
+        }
+    }
+
+    /**
+     * Performs an analisys of the sequence when the endonuclease is regex, and 
+     * palindromic. It also checks if the analysis for circular sequences need
+     * to be done.
+     * 
+     * @param sequenceFragments Digested DNA sequence in fragments
+     * @param k Indicates the current fagment position in the sequence
+     * @param regex Target site sequence
+     * @param isCircular Indicates if the DNA sequence is circular
+     * @param e Endonuclase
+     * @param sequence DNA sequence
+     */
+    private void regexPalindromicAnalysis(Map<Integer, String> sequenceFragments, int k, String regex, boolean isCircular, Endonuclease e, DNASequence sequence) {
+        String fragment = sequenceFragments.get(k);
+        if (fragment.matches(regex)) {
+            if (!isCircular && ((k + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength())) {
+                RestrictionSite targetMatch = new RestrictionSite(e, k, "sense", sequence);
+                matchingRestrictionSites.add(targetMatch);
+            } else if (isCircular) {
+                if ((k + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
+                    RestrictionSite match = new RestrictionSite(e, k, "sense", sequence);
+                    matchingRestrictionSites.add(match);
+                } else { // If k is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
+                    RestrictionSite match = new RestrictionSite(e, k - (int) (sequence.getLength()), "sense", sequence);
+                    matchingRestrictionSites.add(match);
+                }
+            }
+        }
+        if (isCircular && k == sequenceFragments.size() - 1) {
+            circularAnalysis(sequenceFragments, e, k, sequence, regex);
+        }
+    }
+
+    /**
+     * Performs an analysis of the antisequence when the endonuclease is no regex,
+     * but it is palindromic.
+     * 
+     * @param antiSequenceFragments Digested DNA sequence in fragments
+     * @param j Indicates the current fagment position in the sequence
+     * @param e Endonuclease used in the current analysis
+     * @param isCircular Indicates if the DNA sequence is circular
+     * @param sequence DNA sequence
+     */
+    private void noRegexNoPalindromicAnalysis(Map<Integer, String> antiSequenceFragments, int j, Endonuclease e, boolean isCircular, DNASequence sequence) {
+        String antiFragment = antiSequenceFragments.get(j);
+        if (antiFragment.equalsIgnoreCase(e.getEndonucleaseSimpleSenseTarget())) {
+            // If the sequence is not circular and the cutting bp is not out of the sequence's limit
+            if (!isCircular && ((sequence.getLength() - (j + e.getEndonucleasesAntiSenseStrandCuttingBp()) > 0))) {
+                RestrictionSite targetMatch = new RestrictionSite(e, j, "antisense", sequence);
+                matchingRestrictionSites.add(targetMatch);
+            } else if (isCircular) {
+                if ((j + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
+                    RestrictionSite match = new RestrictionSite(e, j, "antisense", sequence);
+                    matchingRestrictionSites.add(match);
+                    System.out.println(j + e.getEndonucleasesSenseStrandCuttingBp());
+                } else { // If i+j is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
+                    RestrictionSite match = new RestrictionSite(e, j - (int) (sequence.getLength()), "antisense", sequence);
+                    matchingRestrictionSites.add(match);
+                }
+            }
+        }
+    }
+
+    /**
+     * Performs an analisys of the sequence when the endonuclease is no regex, and 
+     * no palindromic. It also checks if the analysis for circular sequences need
+     * to be done.
+     * 
+     * @param sequenceFragments Digested DNA sequence in fragments
+     * @param i Indicates the current fagment position in the sequence
+     * @param e Endonuclease used in the current analysis
+     * @param isCircular Indicates if the DNA sequence is circular
+     * @param sequence DNA sequence
+     */
+    private void noRegexPalindromicAnalysis(Map<Integer, String> sequenceFragments, int i, Endonuclease e, boolean isCircular, DNASequence sequence) {
+        String fragment = sequenceFragments.get(i); // Extracts the DNA fragment of the current position
+        if (fragment.equalsIgnoreCase(e.getEndonucleaseSimpleSenseTarget())) {
+            // If the sequence is not circular and the cutting bp is not out of the sequence's limit
+            if (!isCircular && ((i + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength())) {
+                RestrictionSite targetMatch = new RestrictionSite(e, i, "sense", sequence);
+                matchingRestrictionSites.add(targetMatch);
+                // If the sequence is circular we don't need to check if the cutting bp is out of the sequence's limits
+            } else if (isCircular) {
+                // If i+j is smaller than sequence's length, the cutting bp is in the end of the sequence
+                if ((i + e.getEndonucleasesSenseStrandCuttingBp()) < sequence.getLength()) {
+                    RestrictionSite match = new RestrictionSite(e, i, "sense", sequence);
+                    matchingRestrictionSites.add(match);
+                    System.out.println(i + e.getEndonucleasesSenseStrandCuttingBp());
+                    // If i+j is bigger or equal than sequence's lenght, the cleavage point is in the begining of the sequence
+                } else {
+                    RestrictionSite match = new RestrictionSite(e, (i - (int) sequence.getLength()), "sense", sequence);
+                    matchingRestrictionSites.add(match);
+                }
+            }
+        }
+        // If the analysis reach the last fragment and the sequence is circular a last special analysis need to be done
+        if (isCircular && i == sequenceFragments.size() - 1) {
+            circularAnalysis(sequenceFragments, e, i, sequence);
+        }
     }
 
     /**
