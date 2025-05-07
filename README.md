@@ -15,5 +15,3 @@ Genlogic is able to:
 - Detect targets in leading strand 5'->3' and lagging strand 3'->5'.
 - Allows the user to insert or delete endonucleases manually.
 - Results can be exported as txt or CSV files.
-
-![visitors](https://visitor-badge.glitch.me/badge?page_id=luinungom.Genlogic)
