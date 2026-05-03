@@ -15,3 +15,54 @@ Genlogic is able to:
 - Detect targets in leading strand 5'->3' and lagging strand 3'->5'.
 - Allows the user to insert or delete endonucleases manually.
 - Results can be exported as txt or CSV files.
+
+#  Genlogic's Structure
+
+```text
+Genlogic/
+├── .classpath
+├── .project
+├── build.xml
+├── ENDONUCLEASES.dat
+├── LICENSE
+├── Main window.JPG
+├── manifest.mf
+├── README.md
+├── nbproject/
+│   ├── build-impl.xml
+│   ├── genfiles.properties
+│   ├── jfx-impl.xml
+│   ├── project.properties
+│   ├── project.xml
+│   └── configs/
+│   └── private/
+├── src/
+│   ├── genlogic/
+│   │   ├── model/
+│   │   │   ├── DNASequence.java
+│   │   │   ├── Endonuclease.java
+│   │   │   ├── RegexEndonuclease.java
+│   │   │   └── RestrictionSite.java
+│   │   ├── view/
+│   │   │   ├── GenlogicAboutView.fxml
+│   │   │   ├── GenlogicAboutViewController.java
+│   │   │   ├── GenlogicAddRestrictionEnzymesView.fxml
+│   │   │   ├── GenlogicAddRestrictionEnzymesViewController.java
+│   │   │   ├── GenlogicDeleteRestrictionEnymesView.fxml
+│   │   │   ├── GenlogicDeleteRestrictionEnymesViewController.java
+│   │   │   ├── GenlogicMainView.fxml
+│   │   │   ├── GenlogicMainViewController.java
+│   │   │   ├── GenlogicResultsView.fxml
+│   │   │   ├── GenlogicResultsViewController.java
+│   │   │   ├── SplashScreen.fxml
+│   │   │   └── SplashScreenController.java
+│   │   ├── EndonucleaseSerializator.java
+│   │   ├── FASTASequenceReader.java
+│   │   ├── Genlogic.java
+│   │   └── RestrictionSiteSerializator.java
+│   └── resources/
+│       └── images/
+│           ├── FullLogo.png
+│           ├── Genlogic Beta.ico
+│           └── SimpleLogo.png
+```
